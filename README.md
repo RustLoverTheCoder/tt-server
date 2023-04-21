@@ -1,5 +1,7 @@
 # server
 
+cargo fix --lib -p api --allow-dirty
+
 ## docker-compose
 
 - 构建yml中某个服务的镜像
