@@ -9,6 +9,8 @@ use serde::{Deserialize, Serialize};
 pub struct UpdateUserInfoRequest {
     pub username: Option<String>,
     pub phone_number: Option<String>,
+    pub first_name: Option<String>,
+    pub last_name: Option<String>,
 }
 
 pub async fn get_user_info(session: ReadableSession) -> impl IntoResponse {
@@ -33,7 +35,7 @@ pub async fn update_user_info(
             None => return (StatusCode::NOT_FOUND, Json(serde_json::json!({}))),
             Some(_) => {
                 let user =
-                    update_user_info_by_id(user_id, req.username.clone(), req.phone_number.clone())
+                    update_user_info_by_id(user_id, req.username.clone(), req.phone_number.clone(),req.first_name.clone(),req.last_name.clone())
                         .await
                         .unwrap();
                 (StatusCode::OK, Json(serde_json::json!({ "user": user })))
