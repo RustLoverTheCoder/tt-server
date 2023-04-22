@@ -1,0 +1,10 @@
+pub mod user;
+pub mod message;
+pub mod bot;
+pub mod call;
+pub mod chat;
+pub mod misc;
+pub mod media;
+pub mod setting;
+pub mod statistics;
+pub mod payment;

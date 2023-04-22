@@ -2,6 +2,7 @@ mod extractor;
 mod handler;
 mod service;
 mod utils;
+mod domain;
 
 
 use axum::{
