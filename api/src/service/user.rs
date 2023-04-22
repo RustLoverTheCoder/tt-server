@@ -24,7 +24,6 @@ pub async fn create_user(phone: String) -> Result<user::Model, DbErr> {
     let create_at = Utc::now();
     let new_user = user::ActiveModel {
         id: Set(Uuid::new_v4().to_owned()),
-        nickname: Set(phone.to_owned()),
         phone_number: Set(phone.to_owned()),
         status: Set(status.to_owned()),
         created_at: Set(create_at.to_owned().into()),
@@ -42,7 +41,7 @@ pub async fn get_user_info_by_id(user_id: Uuid) -> Result<Option<user::Model>, D
 
 pub async fn update_user_info_by_id(
     user_id: Uuid,
-    nickname: Option<String>,
+    username: Option<String>,
     phone_number: Option<String>,
 ) -> Result<user::Model, DbErr> {
     let db = DB.get().unwrap();
@@ -50,8 +49,8 @@ pub async fn update_user_info_by_id(
         id: Set(user_id.to_owned()),
         ..Default::default() // all other attributes are `NotSet`
     };
-    if let Some(nickname) = nickname {
-        update_user.nickname = Set(nickname.to_owned());
+    if let Some(username) = username {
+        update_user.username = Set(Some(username.to_owned()));
     }
     if let Some(phone_number) = phone_number {
         update_user.phone_number = Set(phone_number.to_owned());

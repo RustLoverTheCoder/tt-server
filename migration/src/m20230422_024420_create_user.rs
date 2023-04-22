@@ -14,8 +14,13 @@ impl MigrationTrait for Migration {
                     .table(User::Table)
                     .if_not_exists()
                     .col(ColumnDef::new(User::Id).uuid().not_null().primary_key())
-                    .col(ColumnDef::new(User::Nickname).string().not_null())
+                    .col(ColumnDef::new(User::FirstName).string())
+                    .col(ColumnDef::new(User::LastName).string())
                     .col(ColumnDef::new(User::PhoneNumber).string().not_null().unique_key())
+                    .col(ColumnDef::new(User::Username).string().unique_key())
+                    .col(ColumnDef::new(User::UserType).string().not_null())
+                    .col(ColumnDef::new(User::IsVerified).boolean().not_null())
+                    .col(ColumnDef::new(User::IsPremium).boolean().not_null())
                     .col(ColumnDef::new(User::Status).integer().not_null())
                     .col(
                         ColumnDef::new(User::CreatedAt)
@@ -45,8 +50,13 @@ impl MigrationTrait for Migration {
 enum User {
     Table,
     Id,
-    Nickname,
+    FirstName,
+    LastName,
     PhoneNumber,
+    Username,
+    UserType,
+    IsVerified,
+    IsPremium,
     Status,
     CreatedAt,
     UpdatedAt,

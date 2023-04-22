@@ -7,7 +7,7 @@ use serde::{Deserialize, Serialize};
 
 #[derive(Debug, Deserialize, Serialize)]
 pub struct UpdateUserInfoRequest {
-    pub nickname: Option<String>,
+    pub username: Option<String>,
     pub phone_number: Option<String>,
 }
 
@@ -33,7 +33,7 @@ pub async fn update_user_info(
             None => return (StatusCode::NOT_FOUND, Json(serde_json::json!({}))),
             Some(_) => {
                 let user =
-                    update_user_info_by_id(user_id, req.nickname.clone(), req.phone_number.clone())
+                    update_user_info_by_id(user_id, req.username.clone(), req.phone_number.clone())
                         .await
                         .unwrap();
                 (StatusCode::OK, Json(serde_json::json!({ "user": user })))
