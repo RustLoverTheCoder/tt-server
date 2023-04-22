@@ -1,6 +1,7 @@
 pub use sea_orm_migration::prelude::*;
 
 mod m20230422_024420_create_user;
+mod m20230422_041821_create_chat;
 
 pub struct Migrator;
 
@@ -9,6 +10,7 @@ impl MigratorTrait for Migrator {
     fn migrations() -> Vec<Box<dyn MigrationTrait>> {
         vec![
             Box::new(m20230422_024420_create_user::Migration),
+            Box::new(m20230422_041821_create_chat::Migration),
         ]
     }
 }
