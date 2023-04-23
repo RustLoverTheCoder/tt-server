@@ -89,7 +89,7 @@ pub struct ApiSession {
     are_secret_chats_enabled: bool,
 }
 
-struct ApiWebSession {
+pub struct ApiWebSession {
     hash: String,
     bot_id: String,
     domain: String,
@@ -102,24 +102,24 @@ struct ApiWebSession {
 }
 
 // ApiSessionData 结构体
-struct ApiSessionData {
+pub struct ApiSessionData {
     main_dc_id: u32,
     keys: std::collections::HashMap<u32, KeyType>,
     hashes: std::collections::HashMap<u32, HashType>,
 }
 
-enum KeyType {
+pub enum KeyType {
     String(String),
     Number(Vec<u32>),
 }
 
-enum HashType {
+pub enum HashType {
     String(String),
     Number(Vec<u32>),
 }
 
 // ApiNotifyException 结构体
-struct ApiNotifyException {
+pub struct ApiNotifyException {
     chat_id: String,
     is_muted: bool,
     is_silent: Option<bool>,
@@ -137,13 +137,13 @@ struct ApiNotification {
 }
 
 // CallbackAction 枚举类型
-enum CallbackAction {
+pub enum CallbackAction {
     Function(Box<dyn Fn() -> ()>),
     Url(String),
 }
 
 // ApiError 结构体
-struct ApiError {
+pub struct ApiError {
     message: String,
     has_error_key: Option<bool>,
     is_slow_mode: Option<bool>,
@@ -151,12 +151,12 @@ struct ApiError {
 }
 
 // ApiFieldError 结构体
-struct ApiFieldError {
+pub struct ApiFieldError {
     field: String,
     message: String,
 }
 
-struct ApiInviteInfo {
+pub struct ApiInviteInfo {
     title: String,
     about: Option<String>,
     hash: String,
@@ -167,7 +167,7 @@ struct ApiInviteInfo {
 }
 
 // ApiExportedInvite 结构体
-struct ApiExportedInvite {
+pub struct ApiExportedInvite {
     is_revoked: Option<bool>,
     is_permanent: Option<bool>,
     link: String,
@@ -184,7 +184,7 @@ struct ApiExportedInvite {
 
 
 // ApiChatInviteImporter 结构体
-struct ApiChatInviteImporter {
+pub struct ApiChatInviteImporter {
     user_id: String,
     date: i64,
     is_requested: Option<bool>,
@@ -192,7 +192,7 @@ struct ApiChatInviteImporter {
 }
 
 // ApiCountry 结构体
-struct ApiCountry {
+pub struct ApiCountry {
     is_hidden: Option<bool>,
     iso2: String,
     default_name: String,
@@ -200,7 +200,7 @@ struct ApiCountry {
 }
 
 // ApiCountryCode 结构体
-struct ApiCountryCode {
+pub struct ApiCountryCode {
     country_code: String,
     prefixes: Option<Vec<String>>,
     patterns: Option<Vec<String>>,
@@ -211,7 +211,7 @@ struct ApiCountryCode {
 }
 
 // ApiAppConfig 结构体
-struct ApiAppConfig {
+pub struct ApiAppConfig {
     emoji_sounds: std::collections::HashMap<String, String>,
     seen_by_max_chat_members: i32,
     seen_by_expires_at: i64,
@@ -233,31 +233,31 @@ struct ApiAppConfig {
 }
 
 // ApiConfig 结构体
-struct ApiConfig {
+pub struct ApiConfig {
     expires_at: i64,
     default_reaction: Option<ApiReaction>,
     gif_search_username: Option<String>,
     max_group_size: i32,
 }
 
-struct GramJsEmojiInteraction {
+pub struct GramJsEmojiInteraction {
     v: i32,
     a: Vec<GramJsEmojiInteractionAction>,
 }
 
 // GramJsEmojiInteractionAction 结构体
-struct GramJsEmojiInteractionAction {
+pub struct GramJsEmojiInteractionAction {
     i: i32,
     t: i32,
 }
 
 // ApiEmojiInteraction 结构体
-struct ApiEmojiInteraction {
+pub struct ApiEmojiInteraction {
     timestamps: Vec<i64>,
 }
 
 // ApiUrlAuthResultRequest 结构体
-struct ApiUrlAuthResultRequest {
+pub struct ApiUrlAuthResultRequest {
     type_: String,
     bot: ApiUser,
     domain: String,
@@ -265,25 +265,25 @@ struct ApiUrlAuthResultRequest {
 }
 
 // ApiUrlAuthResultAccepted 结构体
-struct ApiUrlAuthResultAccepted {
+pub struct ApiUrlAuthResultAccepted {
     type_: String,
     url: String,
 }
 
 // ApiUrlAuthResultDefault 结构体
-struct ApiUrlAuthResultDefault {
+pub struct ApiUrlAuthResultDefault {
     type_: String,
 }
 
 // ApiUrlAuthResult 枚举类型
-enum ApiUrlAuthResult {
+pub enum ApiUrlAuthResult {
     Request(ApiUrlAuthResultRequest),
     Accepted(ApiUrlAuthResultAccepted),
     Default(ApiUrlAuthResultDefault),
 }
 
 // ApiLimitType 枚举类型
-enum ApiLimitType {
+pub enum ApiLimitType {
     UploadMaxFileparts,
     StickersFaved,
     SavedGifs,
